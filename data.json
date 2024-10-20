@@ -1,154 +1,150 @@
 [
     {
-        "input": "<fim_prefix>class Solution:\n    def maxProfit(self, prices):\n        max = 0\n        start = prices[0]\n        for i in range(1, len(prices)):\n            if start < prices[i]: \n<fim_suffix>            start = prices[i]\n        return max<fim_middle>",
-        "output": "                max += prices[i] - start\n"
+        "input": "<fim_prefix>class Solution:\n    def maxProfit(self, prices):\n        max = 0\n<fim_suffix>        for i in range(1, len(prices)):\n            if start < prices[i]: \n                max += prices[i] - start\n            start = prices[i]\n        return max<fim_middle>",
+        "output": "        start = prices[0]\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n\tdef isPalindrome(self, s):\n\t\ts = s.lower()\n\t\tstart = 0\n<fim_suffix>\t\twhile start < end:\n\t\t\tif not s[start].isalnum():\n\t\t\t\tstart += 1\n\t\t\telif not s[end].isalnum():\n\t\t\t\tend -= 1\n\t\t\telif s[start] != s[end]:\n\t\t\t\treturn False\n\t\t\telse:\n\t\t\t\tstart += 1\n\t\t\t\tend -= 1\n\t\treturn True<fim_middle>",
-        "output": "\t\tend = len(s)-1\n"
+        "input": "<fim_prefix>class Solution:\n\tdef isPalindrome(self, s):\n\t\ts = s.lower()\n\t\tstart = 0\n\t\tend = len(s) - 1\n\t\twhile start < end:\n\t\t\tif not s[start].isalnum():\n\t\t\t\tstart += 1\n\t\t\telif not s[end].isalnum():\n\t\t\t\tend -= 1\n\t\t\telif s[start] != s[end]:\n<fim_suffix>\t\t\telse:\n\t\t\t\tstart += 1\n\t\t\t\tend -= 1\n\t\treturn True<fim_middle>",
+        "output": "\t\t\t\treturn False\n"
     },
     {
-        "input": "<fim_prefix>class Solution():\n\tdef longestCommonPrefix(self, strs):\n\t\ti = 0\n\t\tprefix = \"\"\n\t\tif not strs:\n\t\t\treturn prefix\n\t\twhile True:\n\t\t\tif i == len(strs[0]):\n\t\t\t\treturn prefix\n<fim_suffix>\t\t\tfor j in strs[1:]:\n\t\t\t\tif i == len(j):\n\t\t\t\t\treturn prefix\n\t\t\t\tif p != j[i]:\n\t\t\t\t\treturn prefix\n\t\t\ti += 1\n\t\t\tprefix += p\n<fim_middle>",
-        "output": "\t\t\tp = strs[0][i]\n"
+        "input": "<fim_prefix>class Solution():\n\tdef longestCommonPrefix(self, strs):\n\t\ti = 0\n\t\tprefix = \"\"\n\t\tif not strs:\n\t\t\treturn prefix\n\t\twhile True:\n\t\t\tif i == len(strs[0]):\n\t\t\t\treturn prefix\n\t\t\tp = strs[0][i]\n\t\t\tfor j in strs[1:]:\n\t\t\t\tif i == len(j):\n\t\t\t\t\treturn prefix\n\t\t\t\tif p != j[i]:\n<fim_suffix>\t\t\ti += 1\n\t\t\tprefix += p\n<fim_middle>",
+        "output": "\t\t\t\t\treturn prefix\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def letterCombinations(self, digits):\n        keyboard = {\n            \"2\": \"abc\",\n            \"3\": \"def\",\n            \"4\": \"ghi\",\n            \"5\": \"jkl\",\n            \"6\": \"mno\",\n            \"7\": \"pqrs\",\n            \"8\": \"tuv\",\n            \"9\": \"wxyz\"\n        }\n        result = []\n        if not digits:\n            return []\n        next = self.letterCombinations(digits[1:])\n<fim_suffix>            if not next:\n                result.append(i)\n            else:\n                for j in next:\n                    result.append(i + j)\n        return result<fim_middle>",
-        "output": "        for i in keyboard[digits[0]]:\n"
+        "input": "<fim_prefix>class Solution:\n    def letterCombinations(self, digits):\n        keyboard = {\n            \"2\": \"abc\",\n            \"3\": \"def\",\n            \"4\": \"ghi\",\n            \"5\": \"jkl\",\n            \"6\": \"mno\",\n            \"7\": \"pqrs\",\n            \"8\": \"tuv\",\n            \"9\": \"wxyz\"\n<fim_suffix>        result = []\n        if not digits:\n            return []\n        next = self.letterCombinations(digits[1:])\n        for i in keyboard[digits[0]]:\n            if not next:\n                result.append(i)\n            else:\n                for j in next:\n                    result.append(i + j)\n        return result<fim_middle>",
+        "output": "        }\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def rob(self, nums):\n        prev1 = 0\n        prev2 = 0\n        for num in nums:\n            current = max(prev1, prev2 + num)\n<fim_suffix>            prev1 = current\n        return prev1<fim_middle>",
-        "output": "            prev2 = prev1\n"
+        "input": "<fim_prefix>class Solution:\n    def rob(self, nums):\n        prev1 = 0\n        prev2 = 0\n        for num in nums:\n<fim_suffix>            prev2 = prev1\n            prev1 = current\n        return prev1<fim_middle>",
+        "output": "            current = max(prev1, prev2 + num)\n"
     },
     {
-        "input": "<fim_prefix>from collections import deque\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n<fim_suffix>class Solution:\n    def rightSideView(self, root: TreeNode) -> list[int]:\n        if root is None:\n            return []\n        result = []\n        to_visit = deque([root])\n        next_visit = []\n        while len(to_visit) > 0 or len(next_visit) > 0:\n            if len(to_visit) == 0:\n                to_visit = deque(next_visit)\n                next_visit = []\n            node = to_visit.popleft()\n            if len(to_visit) == 0:\n                result.append(node.val)\n            if node.left is not None:\n                next_visit.append(node.left)\n            if node.right is not None:\n                next_visit.append(node.right)\n        return result\ns = Solution()\nprint(s.rightSideView(TreeNode(1, TreeNode(2, None, TreeNode(9)), TreeNode(3, TreeNode(5), TreeNode(8)))))<fim_middle>",
-        "output": "        self.right = right\n"
+        "input": "<fim_prefix>from collections import deque\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left\n        self.right = right\nclass Solution:\n    def rightSideView(self, root: TreeNode) -> list[int]:\n        if root is None:\n            return []\n        result = []\n        to_visit = deque([root])\n        next_visit = []\n<fim_suffix>            if len(to_visit) == 0:\n                to_visit = deque(next_visit)\n                next_visit = []\n            node = to_visit.popleft()\n            if len(to_visit) == 0:\n                result.append(node.val)\n            if node.left is not None:\n                next_visit.append(node.left)\n            if node.right is not None:\n                next_visit.append(node.right)\n        return result<fim_middle>",
+        "output": "        while len(to_visit) > 0 or len(next_visit) > 0:\n"
     },
     {
-        "input": "<fim_prefix>class Solution():\n\tdef isHappy(self, n):\n\t\tsett = set()\n\t\twhile n != 1:\n\t\t\tif n in sett:\n\t\t\t\treturn False\n\t\t\tsett.add(n)\n\t\t\tsum = 0\n\t\t\twhile n > 0:\n\t\t\t\tsum += (n % 10)**2\n<fim_suffix>\t\t\tn = sum\n\t\treturn True\n<fim_middle>",
-        "output": "\t\t\t\tn //= 10\n"
+        "input": "<fim_prefix>class Solution():\n\tdef isHappy(self, n):\n<fim_suffix>\t\twhile n != 1:\n\t\t\tif n in sett:\n\t\t\t\treturn False\n\t\t\tsett.add(n)\n\t\t\tsum = 0\n\t\t\twhile n > 0:\n\t\t\t\tsum += (n % 10)**2\n\t\t\t\tn //= 10\n\t\t\tn = sum\n\t\treturn True\n<fim_middle>",
+        "output": "\t\tsett = set()\n"
     },
     {
-        "input": "<fim_prefix>class Solution():\n\tdef isIsomorphic(self, s, t):\n\t\tmap1 = {}\n\t\tmap2 = {}\n\t\tfor i in range(len(s)):\n\t\t\tif (s[i] in map1 and map1[s[i]] != t[i]) or (s[i] not in map1 and t[i] in map2):\n\t\t\t\treturn False\n<fim_suffix>\t\t\t\tmap1[s[i]] = t[i]\n\t\t\t\tmap2[t[i]] = s[i]\n\t\treturn True\n<fim_middle>",
-        "output": "\t\t\telse:\n"
+        "input": "<fim_prefix>class Solution():\n\tdef isIsomorphic(self, s, t):\n\t\tmap1 = {}\n\t\tmap2 = {}\n\t\tfor i in range(len(s)):\n<fim_suffix>\t\t\t\treturn False\n\t\t\telse:\n\t\t\t\tmap1[s[i]] = t[i]\n\t\t\t\tmap2[t[i]] = s[i]\n\t\treturn True\n<fim_middle>",
+        "output": "\t\t\tif (s[i] in map1 and map1[s[i]] != t[i]) or (s[i] not in map1 and t[i] in map2):\n"
     },
     {
         "input": "<fim_prefix>class Solution:\n    def reverseList(self, head):\n        if head is None or head.next is None: return head\n        pom = head.next\n<fim_suffix>        previous = head\n        head = pom\n        while head is not None:\n            fast = head.next\n            head.next = previous\n            previous = head\n            head = fast\n        return previous<fim_middle>",
         "output": "        head.next = None\n"
     },
     {
-        "input": "<fim_prefix>class TrieNode:\n    def __init__(self):\n        self.children = {}\n        self.end = False\nclass Trie:\n    def __init__(self):\n        self.root = TrieNode()\n    def insert(self, word):\n        current = self.root\n        for letter in word:\n            if letter not in current.children:\n                current.children[letter] = TrieNode()\n            current = current.children[letter]\n        current.end = True\n    def search(self, word):\n        current = self.root\n        for letter in word:\n            if letter not in current.children:\n                return False\n            current = current.children[letter]\n        if current.end:\n            return True\n        return False\n<fim_suffix>        current = self.root\n        for letter in prefix:\n            if letter not in current.children:\n                return False\n            current = current.children[letter]\n        return True<fim_middle>",
-        "output": "    def startsWith(self, prefix):\n"
+        "input": "<fim_prefix>class TrieNode:\n    def __init__(self):\n        self.children = {}\n        self.end = False\nclass Trie:\n    def __init__(self):\n        self.root = TrieNode()\n    def insert(self, word):\n<fim_suffix>        for letter in word:\n            if letter not in current.children:\n                current.children[letter] = TrieNode()\n            current = current.children[letter]\n        current.end = True\n    def search(self, word):\n        current = self.root\n        for letter in word:\n            if letter not in current.children:\n                return False\n            current = current.children[letter]\n        if current.end:\n            return True\n        return False\n    def startsWith(self, prefix):\n        current = self.root\n        for letter in prefix:\n            if letter not in current.children:\n                return False\n            current = current.children[letter]\n        return True<fim_middle>",
+        "output": "        current = self.root\n"
     },
     {
         "input": "<fim_prefix>class Solution():\n\tdef wordPattern(self, pattern, s):\n\t\twords = s.split(' ')\n\t\tif len(words) != len(pattern):\n\t\t\treturn False\n\t\tmap1 = {}\n\t\tmap2 = {}\n\t\tfor i in range(len(words)):\n<fim_suffix>\t\t\t\treturn False\n\t\t\telse:\n\t\t\t\tmap1[pattern[i]] = words[i]\n\t\t\t\tmap2[words[i]] = pattern[i]\n\t\treturn True\n<fim_middle>",
         "output": "\t\t\tif (pattern[i] in map1 and map1[pattern[i]] != words[i]) or (pattern[i] not in map1 and words[i] in map2):\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def combinationSum3(self, k, n):\n        def function(k, n, current):\n            res = []\n            if n/k < 1:\n<fim_suffix>            for i in range(current, min(10, n+1)):\n                if k == 1 and n-i == 0:\n                    res.append([i])\n                elif k-1 > 0 and n-i >= 0:\n                    next = function(k-1, n-i, i+1)\n                    if next:\n                        for el in next:\n                            el.append(i)\n                            res.append(el)\n            return res\n        return function(k, n, 1)<fim_middle>",
-        "output": "                return res\n"
+        "input": "<fim_prefix>class Solution:\n    def combinationSum3(self, k, n):\n        def function(k, n, current):\n            res = []\n<fim_suffix>                return res\n            for i in range(current, min(10, n+1)):\n                if k == 1 and n - i == 0:\n                    res.append([i])\n                elif k - 1 > 0 and n - i >= 0:\n                    next = function(k - 1, n - i, i + 1)\n                    if next:\n                        for el in next:\n                            el.append(i)\n                            res.append(el)\n            return res\n        return function(k, n, 1)<fim_middle>",
+        "output": "            if n/k < 1:\n"
     },
     {
-        "input": "<fim_prefix>class Solution():\n\tdef containsNearbyDuplicate(self, nums, k):\n\t\tdict = {}\n\t\tfor i in range(len(nums)):\n<fim_suffix>\t\t\t\tdict[nums[i]] = i\n\t\t\telse:\n\t\t\t\tif abs(dict[nums[i]]-i) <= k:\n\t\t\t\t\treturn True\n\t\t\t\tdict[nums[i]] = i\n\t\treturn False\n<fim_middle>",
-        "output": "\t\t\tif nums[i] not in dict:\n"
+        "input": "<fim_prefix>class Solution():\n\tdef containsNearbyDuplicate(self, nums, k):\n\t\tdict = {}\n\t\tfor i in range(len(nums)):\n\t\t\tif nums[i] not in dict:\n\t\t\t\tdict[nums[i]] = i\n\t\t\telse:\n<fim_suffix>\t\t\t\t\treturn True\n\t\t\t\tdict[nums[i]] = i\n\t\treturn False\n<fim_middle>",
+        "output": "\t\t\t\tif abs(dict[nums[i]] - i) <= k:\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n\tdef summaryRanges(self, nums):\n\t\tres = []\n\t\tnums.append(0)\n\t\tn = len(nums)\n\t\tstart = nums[0]\n\t\tfor i in range(1, n):\n\t\t\tif nums[i-1]+1 != nums[i] or i == n-1:\n\t\t\t\tif start != nums[i-1]:\n<fim_suffix>\t\t\t\telse:\n\t\t\t\t\tres.append(f'{start}')\n\t\t\t\tif i < n-1:\n\t\t\t\t\tstart = nums[i]\n\t\treturn res\n<fim_middle>",
-        "output": "\t\t\t\t\tres.append(f'{start}->{nums[i-1]}')\n"
+        "input": "<fim_prefix>class Solution:\n\tdef summaryRanges(self, nums):\n\t\tres = []\n\t\tnums.append(0)\n\t\tn = len(nums)\n\t\tstart = nums[0]\n\t\tfor i in range(1, n):\n\t\t\tif nums[i - 1] + 1 != nums[i] or i == n - 1:\n<fim_suffix>\t\t\t\t\tres.append(f'{start}->{nums[i - 1]}')\n\t\t\t\telse:\n\t\t\t\t\tres.append(f'{start}')\n\t\t\t\tif i < n - 1:\n\t\t\t\t\tstart = nums[i]\n\t\treturn res\n<fim_middle>",
+        "output": "\t\t\t\tif start != nums[i - 1]:\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def lowestCommonAncestor(self, root, p, q):\n        def helper(node):\n            if not node:\n                return None\n            if node == p or node == q:\n                return node\n            left = helper(node.left)\n<fim_suffix>            if left and right:\n                return node\n            return left if left else right\n        return helper(root)<fim_middle>",
-        "output": "            right = helper(node.right)\n"
+        "input": "<fim_prefix>class Solution:\n    def lowestCommonAncestor(self, root, p, q):\n        def helper(node):\n            if not node:\n                return None\n            if node == p or node == q:\n                return node\n<fim_suffix>            right = helper(node.right)\n            if left and right:\n                return node\n            return left if left else right\n        return helper(root)<fim_middle>",
+        "output": "            left = helper(node.left)\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n\tdef removeDuplicates(self, nums):\n\t\ti = 1\n\t\tcurrent = 1\n\t\tif not nums:\n\t\t\treturn 0\n<fim_suffix>\t\t\treturn 1\n\t\twhile i < len(nums):\n\t\t\tif nums[i-1] != nums[i]:\n\t\t\t\tnums[current] = nums[i]\n\t\t\t\tcurrent += 1\n\t\t\ti += 1\n\t\treturn current\n<fim_middle>",
-        "output": "\t\tif nums[0] == nums[-1]:\n"
+        "input": "<fim_prefix>class Solution:\n\tdef removeDuplicates(self, nums):\n\t\ti = 1\n\t\tcurrent = 1\n\t\tif not nums:\n\t\t\treturn 0\n\t\tif nums[0] == nums[-1]:\n\t\t\treturn 1\n\t\twhile i < len(nums):\n<fim_suffix>\t\t\t\tnums[current] = nums[i]\n\t\t\t\tcurrent += 1\n\t\t\ti += 1\n\t\treturn current\n<fim_middle>",
+        "output": "\t\t\tif nums[i - 1] != nums[i]:\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n\tdef removeElement(self, nums, val):\n\t\tnums.sort()\n\t\tn = len(nums)\n\t\tremoved = 0\n\t\ti = 0\n\t\twhile i < n:\n\t\t\tif nums[i] == val:\n\t\t\t\tcounter = i\n\t\t\t\tfor j in range(i, n):\n\t\t\t\t\tif nums[j] > val:\n\t\t\t\t\t\tnums[counter] = nums[j]\n<fim_suffix>\t\t\t\t\telse:\n\t\t\t\t\t\tremoved += 1\n\t\t\t\tbreak\n\t\t\ti += 1\n\t\treturn n-removed\n<fim_middle>",
-        "output": "\t\t\t\t\t\tcounter += 1\n"
+        "input": "<fim_prefix>class Solution:\n\tdef removeElement(self, nums, val):\n\t\tnums.sort()\n\t\tn = len(nums)\n<fim_suffix>\t\ti = 0\n\t\twhile i < n:\n\t\t\tif nums[i] == val:\n\t\t\t\tcounter = i\n\t\t\t\tfor j in range(i, n):\n\t\t\t\t\tif nums[j] > val:\n\t\t\t\t\t\tnums[counter] = nums[j]\n\t\t\t\t\t\tcounter += 1\n\t\t\t\t\telse:\n\t\t\t\t\t\tremoved += 1\n\t\t\t\tbreak\n\t\t\ti += 1\n\t\treturn n-removed\n<fim_middle>",
+        "output": "\t\tremoved = 0\n"
     },
     {
-        "input": "<fim_prefix>class Solution():\n\tdef strStr(self, haystack, needle):\n\t\ti = 0\n\t\tj = 0\n\t\twhile j < len(haystack):\n\t\t\tif needle[i] == haystack[j]:\n\t\t\t\ti += 1\n\t\t\t\tif i == len(needle):\n\t\t\t\t\treturn j-i+1\t\n\t\t\telse:\n\t\t\t\tj -= i\n<fim_suffix>\t\t\tj += 1\n\t\treturn -1\n<fim_middle>",
-        "output": "\t\t\t\ti = 0\n"
+        "input": "<fim_prefix>class Solution():\n\tdef strStr(self, haystack, needle):\n\t\ti = 0\n\t\tj = 0\n\t\twhile j < len(haystack):\n\t\t\tif needle[i] == haystack[j]:\n\t\t\t\ti += 1\n\t\t\t\tif i == len(needle):\n\t\t\t\t\treturn j - i + 1\t\n\t\t\telse:\n<fim_suffix>\t\t\t\ti = 0\n\t\t\tj += 1\n\t\treturn -1\n<fim_middle>",
+        "output": "\t\t\t\tj -= i\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def moveZeroes(self, nums):\n        index = 0\n        for i in range(len(nums)):\n<fim_suffix>                nums[i], nums[index] = nums[index], nums[i]\n                index += 1<fim_middle>",
-        "output": "            if nums[i] != 0:\n"
+        "input": "<fim_prefix>class Solution:\n    def moveZeroes(self, nums):\n        index = 0\n<fim_suffix>            if nums[i] != 0:\n                nums[i], nums[index] = nums[index], nums[i]\n                index += 1<fim_middle>",
+        "output": "        for i in range(len(nums)):\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def oddEvenList(self, head):\n        even = head.next\n        odd = head\n        while even is not None and odd is not None:\n            odd.next = odd.next.next\n            odd = odd.next\n<fim_suffix>            even = even.next\n        return head<fim_middle>",
-        "output": "            even.next = even.next.next\n"
+        "input": "<fim_prefix>class Solution:\n    def oddEvenList(self, head):\n        even = head.next\n        odd = head\n        while even is not None and odd is not None:\n<fim_suffix>            odd = odd.next\n            even.next = even.next.next\n            even = even.next\n        return head<fim_middle>",
+        "output": "            odd.next = odd.next.next\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def increasingTriplet(self, nums):\n        if len(nums) < 3:\n            return False\n        maxes = [nums[-1]]*len(nums)\n        for i in range(len(nums)-2, -1, -1):\n            maxes[i] = max(maxes[i+1], nums[i])\n        minis = [nums[0]]*len(nums)\n<fim_suffix>            minis[i] = min(minis[i-1], nums[i])\n        for i in range(len(nums)):\n            if minis[i] < nums[i] < maxes[i]:\n                return True\n        return False<fim_middle>",
-        "output": "        for i in range(1, len(nums)):\n"
+        "input": "<fim_prefix>class Solution:\n    def increasingTriplet(self, nums):\n<fim_suffix>            return False\n        maxes = [nums[-1]] * len(nums)\n        for i in range(len(nums) - 2, -1, -1):\n            maxes[i] = max(maxes[i + 1], nums[i])\n        minis = [nums[0]] * len(nums)\n        for i in range(1, len(nums)):\n            minis[i] = min(minis[i - 1], nums[i])\n        for i in range(len(nums)):\n            if minis[i] < nums[i] < maxes[i]:\n                return True\n        return False<fim_middle>",
+        "output": "        if len(nums) < 3:\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def countBits(self, n):\n        res = [0]\n<fim_suffix>            counter = 0\n            while True:\n                if i == 1:\n                    counter += 1\n                    break\n                if i % 2 == 1:\n                    counter += 1\n                i = i // 2\n            res.append(counter)\n        return res<fim_middle>",
-        "output": "        for i in range(1, n+1):\n"
+        "input": "<fim_prefix>class Solution:\n    def countBits(self, n):\n        res = [0]\n        for i in range(1, n+1):\n<fim_suffix>            while True:\n                if i == 1:\n                    counter += 1\n                    break\n                if i % 2 == 1:\n                    counter += 1\n                i = i // 2\n            res.append(counter)\n        return res<fim_middle>",
+        "output": "            counter = 0\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def reverseVowels(self, s):\n        vowels = ['a', 'e', 'i', 'o', 'u', \"A\", \"E\", \"I\", \"O\", \"U\"]\n        my_vowels = []\n        result = \"\"\n        for char in s:\n            if char in vowels:\n                my_vowels.append(char)\n        counter = len(my_vowels)-1\n        for char in s:\n<fim_suffix>                result += my_vowels[counter]\n                counter -= 1\n            else:\n                result += char\n        return result<fim_middle>",
-        "output": "            if char in vowels:\n"
+        "input": "<fim_prefix>class Solution:\n    def reverseVowels(self, s):\n        vowels = ['a', 'e', 'i', 'o', 'u', \"A\", \"E\", \"I\", \"O\", \"U\"]\n        my_vowels = []\n        result = \"\"\n<fim_suffix>            if char in vowels:\n                my_vowels.append(char)\n        counter = len(my_vowels) - 1\n        for char in s:\n            if char in vowels:\n                result += my_vowels[counter]\n                counter -= 1\n            else:\n                result += char\n        return result<fim_middle>",
+        "output": "        for char in s:\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def guessNumber(self, n):\n        mini = 1\n        maxi = n+1\n        while True:\n            num = (maxi+mini)//2\n            if guess(num) == 0:\n<fim_suffix>            elif guess(num) == -1:\n                maxi = num\n            else:\n                mini = num<fim_middle>",
-        "output": "                return num\n"
+        "input": "<fim_prefix>class Solution():\n\tdef canConstruct(self, ransomNote, magazine):\n<fim_suffix>\t\tfor letter in magazine:\n\t\t\tif letter not in dict:\n\t\t\t\tdict[letter] = 1\n\t\t\telse:\n\t\t\t\tdict[letter] += 1\n\t\tfor letter in ransomNote:\n\t\t\tif letter not in dict or dict[letter] == 0:\n\t\t\t\treturn False\n\t\t\telse:\n\t\t\t\tdict[letter] -= 1\t\n\t\treturn True\n<fim_middle>",
+        "output": "\t\tdict = {}\n"
     },
     {
-        "input": "<fim_prefix>class Solution():\n\tdef canConstruct(self, ransomNote, magazine):\n\t\tdict = {}\n\t\tfor letter in magazine:\n\t\t\tif letter not in dict:\n\t\t\t\tdict[letter] = 1\n<fim_suffix>\t\t\t\tdict[letter] += 1\n\t\tfor letter in ransomNote:\n\t\t\tif letter not in dict or dict[letter] == 0:\n\t\t\t\treturn False\n\t\t\telse:\n\t\t\t\tdict[letter] -= 1\t\n\t\treturn True\n<fim_middle>",
-        "output": "\t\t\telse:\n"
+        "input": "<fim_prefix>class Solution:\n    def isSubsequence(self, s, t):\n        index_s = 0\n        index_t = 0\n        if s == \"\":\n<fim_suffix>        if t == \"\":\n            return False\n        while index_t < len(t):\n            if s[index_s] == t[index_t]:\n                index_s += 1\n            index_t += 1\n            if index_s == len(s):\n                return True\n        return False\n<fim_middle>",
+        "output": "            return True\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def isSubsequence(self, s, t):\n        index_s = 0\n        index_t = 0\n        if s == \"\":\n            return True\n<fim_suffix>            return False\n        while index_t < len(t):\n            if s[index_s] == t[index_t]:\n                index_s += 1\n            index_t += 1\n            if index_s == len(s):\n                return True\n        return False\n<fim_middle>",
-        "output": "        if t == \"\":\n"
+        "input": "<fim_prefix>class Solution:\n    def decodeString(self, s):\n        stack = []\n        num = 0\n        val = \"\"\n<fim_suffix>            if c == \"[\":\n                stack.append((val, num))\n                val = \"\"\n                num = 0\n            elif c == \"]\":\n                prev, times = stack.pop()\n                val = prev + times * val\n            elif c.isdigit():\n                num = num * 10 + int(c)\n            else:\n                val += c\n        return val<fim_middle>",
+        "output": "        for c in s:\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def decodeString(self, s):\n        stack = []\n        num = 0\n        val = \"\"\n        for c in s:\n            if c == \"[\":\n                stack.append((val, num))\n<fim_suffix>                num = 0\n            elif c == \"]\":\n                prev, times = stack.pop()\n                val = prev + times * val\n            elif c.isdigit():\n                num = num*10 + int(c)\n            else:\n                val += c\n        return val<fim_middle>",
-        "output": "                val = \"\"\n"
+        "input": "<fim_prefix>from collections import deque\nclass Solution:\n    def calcEquation(self, equations, values, queries):\n        cluster = 0\n        known = [{equations[0][0]: 1}]\n        visited = set()\n        to_visit = deque([equations[0][0]])\n        while True:\n            if not to_visit:\n                for equation in equations:\n                    if equation[0] not in visited:\n                        to_visit.append(equation[0])\n<fim_suffix>                        known.append({equation[0]: 1})\n                        break\n                    elif equation[1] not in visited:\n                        to_visit.append(equation[1])\n                        cluster += 1\n                        known.append({equation[1]: 1})\n                        break\n            if not to_visit:\n                break\n            curr = to_visit.popleft()\n            visited.add(curr)\n            for equation, value in zip(equations, values):\n                if equation[0] == curr:\n                    if equation[1] not in known[cluster]:\n                        known[cluster][equation[1]] = known[cluster][curr] / value\n                        to_visit.append(equation[1])\n                if equation[1] == curr:\n                    if equation[0] not in known[cluster]:\n                        known[cluster][equation[0]] = known[cluster][curr] * value\n                        to_visit.append(equation[0])\n        result = []\n        for query in queries:\n            done = False\n            for i in range(cluster+1):\n                if query[0] in known[i] and query[1] in known[i]:\n                    result.append(known[i][query[0]] / known[i][query[1]])\n                    done = True\n                    break\n            if not done:\n                result.append(-1)\n        return result<fim_middle>",
+        "output": "                        cluster += 1\n"
     },
     {
-        "input": "<fim_prefix>from collections import deque\nclass Solution:\n    def calcEquation(self, equations, values, queries):\n        cluster = 0\n        known = [{equations[0][0]: 1}]\n        visited = set()\n        to_visit = deque([equations[0][0]])\n        while True:\n            if not to_visit:\n                for equation in equations:\n                    if equation[0] not in visited:\n                        to_visit.append(equation[0])\n                        cluster += 1\n                        known.append({equation[0]: 1})\n                        break\n                    elif equation[1] not in visited:\n                        to_visit.append(equation[1])\n                        cluster += 1\n                        known.append({equation[1]: 1})\n                        break\n            if not to_visit:\n                break\n            curr = to_visit.popleft()\n            visited.add(curr)\n            for equation, value in zip(equations, values):\n                if equation[0] == curr:\n                    if equation[1] not in known[cluster]:\n<fim_suffix>                        to_visit.append(equation[1])\n                if equation[1] == curr:\n                    if equation[0] not in known[cluster]:\n                        known[cluster][equation[0]] = known[cluster][curr] * value\n                        to_visit.append(equation[0])\n        result = []\n        for query in queries:\n            done = False\n            for i in range(cluster+1):\n                if query[0] in known[i] and query[1] in known[i]:\n                    result.append(known[i][query[0]]/known[i][query[1]])\n                    done = True\n                    break\n            if not done:\n                result.append(-1)\n        return result<fim_middle>",
-        "output": "                        known[cluster][equation[1]] = known[cluster][curr] / value\n"
+        "input": "<fim_prefix>class Solution:\n    def eraseOverlapIntervals(self, intervals):\n<fim_suffix>        counter = 0\n        current = intervals[0][1]\n        for i in range(1, len(intervals)):\n            if intervals[i][0] < current:\n                counter += 1\n            else:\n                current = intervals[i][1]\n        return counter<fim_middle>",
+        "output": "        intervals.sort(key=lambda x: x[1])\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n<fim_suffix>        intervals.sort(key=lambda x: x[1])\n        counter = 0\n        current = intervals[0][1]\n        for i in range(1, len(intervals)):\n            if intervals[i][0] < current:\n                counter += 1\n            else:\n                current = intervals[i][1]\n        return counter<fim_middle>",
-        "output": "    def eraseOverlapIntervals(self, intervals):\n"
+        "input": "<fim_prefix>class Solution:\n    def compress(self, chars):\n        res = \"\"\n        current = chars[0]\n        counter = 1\n        for i in range(1, len(chars)):\n            if chars[i] == current:\n                counter += 1\n            else:\n                res += current\n                res += str(counter) if counter > 1 else \"\"\n                current = chars[i]\n                counter = 1\n        res += current\n<fim_suffix>        for i in range(len(res)):\n            chars[i] = res[i]\n        return len(res)<fim_middle>",
+        "output": "        res += str(counter) if counter > 1 else \"\"\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def compress(self, chars):\n        res = \"\"\n        current = chars[0]\n        counter = 1\n<fim_suffix>            if chars[i] == current:\n                counter += 1\n            else:\n                res += current\n                res += str(counter) if counter > 1 else \"\"\n                current = chars[i]\n                counter = 1\n        res += current\n        res += str(counter) if counter > 1 else \"\"\n        for i in range(len(res)):\n            chars[i] = res[i]\n        return len(res)<fim_middle>",
-        "output": "        for i in range(1, len(chars)):\n"
+        "input": "<fim_prefix>class Solution:\n<fim_suffix>        if not root:\n            return None\n        if root.val > key:\n            root.left = self.deleteNode(root.left, key)\n        elif root.val < key:\n            root.right = self.deleteNode(root.right, key)\n        else:\n            if not root.left:\n                return root.right\n            if not root.right:\n                return root.left\n            if root.left and root.right:\n                temp = root.right\n                while temp.left: temp = temp.left\n                root.val = temp.val\n                root.right = self.deleteNode(root.right, root.val)\n        return root<fim_middle>",
+        "output": "    def deleteNode(self, root, key):\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def deleteNode(self, root, key):\n        if not root:\n            return None\n        if root.val > key:\n            root.left = self.deleteNode(root.left, key)\n        elif root.val < key:\n            root.right = self.deleteNode(root.right, key)\n<fim_suffix>            if not root.left:\n                return root.right\n            if not root.right:\n                return root.left\n            if root.left and root.right:\n                temp = root.right\n                while temp.left: temp = temp.left\n                root.val = temp.val\n                root.right = self.deleteNode(root.right, root.val)\n        return root<fim_middle>",
-        "output": "        else:\n"
+        "input": "<fim_prefix>class Solution:\n    def findMinArrowShots(self, points):\n        points.sort(key=lambda x: x[1])\n        counter = 1\n<fim_suffix>        for i in range(1, len(points)):\n            if points[i][0] <= current:\n                pass\n            else:\n                counter += 1\n                current = points[i][1]\n        return counter<fim_middle>",
+        "output": "        current = points[0][1]\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n<fim_suffix>        points.sort(key=lambda x: x[1])\n        counter = 1\n        current = points[0][1]\n        for i in range(1, len(points)):\n            if points[i][0] <= current:\n                pass\n            else:\n                counter += 1\n                current = points[i][1]\n        return counter<fim_middle>",
-        "output": "    def findMinArrowShots(self, points):\n"
+        "input": "<fim_prefix>class Solution:\n    def canJump(self, nums):\n        current_max_moves = 0\n<fim_suffix>            if current_max_moves < 0:\n                return False\n            elif num > current_max_moves:\n                current_max_moves = num\n            current_max_moves -= 1\n        return True<fim_middle>",
+        "output": "        for num in nums:\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def canJump(self, nums):\n<fim_suffix>        for num in nums:\n            if current_max_moves < 0:\n                return False\n            elif num > current_max_moves:\n                current_max_moves = num\n            current_max_moves -= 1\n        return True<fim_middle>",
-        "output": "        current_max_moves = 0\n"
+        "input": "<fim_prefix>class Solution():\n\tdef lengthOfLastWord(self, s):\n\t\tcounter = 0\n\t\ts = s.strip()\n\t\tfor i in range(len(s) - 1, -1, -1):\n\t\t\tif s[i] == ' ':\n<fim_suffix>\t\t\telse:\n\t\t\t\tcounter += 1\n\t\treturn counter\n<fim_middle>",
+        "output": "\t\t\t\treturn counter\n"
     },
     {
-        "input": "<fim_prefix>class Solution():\n\tdef lengthOfLastWord(self, s):\n<fim_suffix>\t\ts = s.strip()\n\t\tfor i in range(len(s)-1, -1, -1):\n\t\t\tif s[i] == ' ':\n\t\t\t\treturn counter\n\t\t\telse:\n\t\t\t\tcounter += 1\n\t\treturn counter\n<fim_middle>",
-        "output": "\t\tcounter = 0\n"
-    },
-    {
-        "input": "<fim_prefix>class Solution():\n<fim_suffix>\t\tnum = 1\n\t\tcounter = 0\n\t\twhile x > 0:\n\t\t\tx -= num\n\t\t\tnum += 2\n\t\t\tcounter += 1\n\t\treturn counter if x == 0 else counter - 1\n<fim_middle>",
-        "output": "\tdef mySqrt(self, x):\n"
+        "input": "<fim_prefix>class Solution():\n\tdef mySqrt(self, x):\n\t\tnum = 1\n\t\tcounter = 0\n<fim_suffix>\t\t\tx -= num\n\t\t\tnum += 2\n\t\t\tcounter += 1\n\t\treturn counter if x == 0 else counter - 1\n<fim_middle>",
+        "output": "\t\twhile x > 0:\n"
     },
     {
         "input": "<fim_prefix>class Solution:\n    def minDistance(self, word1, word2):\n        n, m = len(word1), len(word2)\n        grid = [[float('inf') for _ in range(m + 1)] for _ in range(n + 1)]\n<fim_suffix>            grid[n][i] = m - i\n        for i in range(n + 1):\n            grid[i][m] = n - i\n        for i in range(n - 1, -1, -1):\n            for j in range(m - 1, -1, -1):\n                grid[i][j] = min(\n                    grid[i + 1][j] + 1,\n                    grid[i][j + 1] + 1,\n                    grid[i + 1][j + 1] + (word1[i] != word2[j])\n                )\n        return grid[0][0]<fim_middle>",
         "output": "        for i in range(m + 1):\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n\tdef removeDuplicates(self, nums):\n\t\ti = 2\n\t\tcurrent = 2\n\t\tif not nums:\n\t\t\treturn 0\n<fim_suffix>\t\t\tif nums[current-1] != nums[i] or (nums[current-1] == nums[i] and nums[current-2] != nums[i]):\n\t\t\t\tnums[current] = nums[i]\n\t\t\t\tcurrent += 1\n\t\t\ti += 1\n\t\treturn current\n<fim_middle>",
-        "output": "\t\twhile i < len(nums):\n"
+        "input": "<fim_prefix>class Solution:\n\tdef removeDuplicates(self, nums):\n<fim_suffix>\t\tcurrent = 2\n\t\tif not nums:\n\t\t\treturn 0\n\t\twhile i < len(nums):\n\t\t\tif nums[current - 1] != nums[i] or (nums[current - 1] == nums[i] and nums[current -2 ] != nums[i]):\n\t\t\t\tnums[current] = nums[i]\n\t\t\t\tcurrent += 1\n\t\t\ti += 1\n\t\treturn current\n<fim_middle>",
+        "output": "\t\ti = 2\n"
     },
     {
-        "input": "<fim_prefix>class Solution:\n    def merge(self, nums1, m, nums2, n):\n        i = 0\n        j = 0\n        while i < m+n and j < n:\n<fim_suffix>                cur = nums1[i]\n                for k in range(i+1, m+n):\n                    cur_help = nums1[k]\n                    nums1[k] = cur\n                    cur = cur_help\n                nums1[i] = nums2[j]\n                j += 1\n            i += 1\n        if n-j > 0:\n            for k in range(n-j):\n                nums1[-(n-j)+k] = nums2[j+k]\n        return nums1<fim_middle>",
+        "input": "<fim_prefix>class Solution:\n    def merge(self, nums1, m, nums2, n):\n        i = 0\n        j = 0\n        while i < m+n and j < n:\n<fim_suffix>                cur = nums1[i]\n                for k in range(i + 1, m + n):\n                    cur_help = nums1[k]\n                    nums1[k] = cur\n                    cur = cur_help\n                nums1[i] = nums2[j]\n                j += 1\n            i += 1\n        if n - j > 0:\n            for k in range(n - j):\n                nums1[- (n - j) + k] = nums2[j + k]\n        return nums1<fim_middle>",
         "output": "            if nums1[i] > nums2[j]:\n"
     }
 ]

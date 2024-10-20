@@ -8,13 +8,14 @@ tokenizer = AutoTokenizer.from_pretrained(checkpoint)
 model = AutoModelForCausalLM.from_pretrained(checkpoint).to(device)
 
 params = {
-    'max_new_tokens': 50
+    'max_new_tokens': 30
 }
 
 with open("data.json", 'r') as file:
     data = json.load(file)
 
 correct_full = 0
+results = []
 
 for i, element in enumerate(data):
     input = element["input"]
@@ -26,11 +27,15 @@ for i, element in enumerate(data):
 
     start = generated_output.find("<fim_middle>") + len("<fim_middle>")
     end = generated_output.find("<|endoftext|>")
-    print(f"--- Example {i} ---")
-    print(f"Correct -> {output}")
-    print(f"Model generated -> {generated_output[start:end]}")
+    results.append({
+        "correct": output,
+        "generated": generated_output[start:end]
+    })
 
     if output == generated_output[start:end]:
         correct_full += 1
 
-print(f"Accuracy full -> {correct_full/i*100}")
+with open("results.json", 'w') as file:
+        json.dump(results, file, indent=4)
+
+print(f"Accuracy full -> {correct_full/len(data)*100}")
