@@ -41,7 +41,7 @@
         "token match": 1.0,
         "runnable": false,
         "label": "partial",
-        "runnable_manual": true
+        "runnable_manual": false
     },
     {
         "correct": "            current = max(prev1, prev2 + num)\n",
@@ -151,7 +151,7 @@
         "token match": 0.16666666666666666,
         "runnable": false,
         "label": "incorrect",
-        "runnable_manual": true
+        "runnable_manual": false
     },
     {
         "correct": "            left = helper(node.left)\n",
@@ -294,7 +294,7 @@
         "token match": 0.0,
         "runnable": false,
         "label": "incorrect",
-        "runnable_manual": true
+        "runnable_manual": false
     },
     {
         "correct": "        intervals.sort(key=lambda x: x[1])\n",
@@ -404,6 +404,6 @@
         "token match": 0.75,
         "runnable": false,
         "label": "partial",
-        "runnable_manual": true
+        "runnable_manual": false
     }
 ]
