@@ -1,5 +1,21 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import sacrebleu
+import Levenshtein
 import json
+
+
+def token_match(pred, target):
+    pred_tokens = set(pred.split())
+    target_tokens = set(target.split())
+    return len(pred_tokens & target_tokens) / len(target_tokens) if target_tokens else 0
+
+def is_runnable(code):
+    try:
+        exec(code)
+        return True
+    except Exception as e:
+        return False
+
 
 checkpoint = "bigcode/tiny_starcoder_py"
 device = "cuda"
@@ -27,15 +43,24 @@ for i, element in enumerate(data):
 
     start = generated_output.find("<fim_middle>") + len("<fim_middle>")
     end = generated_output.find("<|endoftext|>")
+
+    generated = generated_output[start:end]
+    code = input.replace("<fim_prefix>", "").replace("<fim_suffix>", generated).replace("<fim_middle>", "")
+
     results.append({
         "correct": output,
-        "generated": generated_output[start:end]
+        "generated": generated,
+        "exact match": output == generated,
+        "chrf": sacrebleu.corpus_chrf([generated], [[output]]).score,
+        "levenshtein": Levenshtein.distance(generated, output),
+        "token match": token_match(generated, output),
+        "runnable": is_runnable(code)
     })
 
     if output == generated_output[start:end]:
         correct_full += 1
 
-with open("results.json", 'w') as file:
+with open("results_generated.json", 'w') as file:
         json.dump(results, file, indent=4)
 
-print(f"Accuracy full -> {correct_full/len(data)*100}")
+print(f"Exact matches -> {correct_full} out of {len(data)}")
