@@ -59,4 +59,4 @@ To complement manual labeling, I calculated the following metrics to evaluate th
 
 ## How to Run
 
-To reproduce this project, you can clone this repository, but I suggest using the provided [notebook](https://github.com/Olivera2708/Code-completion/blob/main/AI_Code_Completion.ipynb). It contains all relevant code with detailed descriptions and explains the thought process behind each step.
+To reproduce this project, you can clone this repository, but I suggest using the provided [notebook](https://github.com/Olivera2708/Code-completion/blob/main/AI_Code_Completion.ipynb) in Google Colab. It contains all relevant code with detailed descriptions and explains the thought process behind each step.
